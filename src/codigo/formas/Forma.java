@@ -16,6 +16,7 @@ public class Forma  extends Polygon{
     public int x;
     public int y;
     
+    
     public Forma (int _posX, int _posY, int _lados, Color _color, boolean _relleno){
         super( new int[_lados], new int[_lados], _lados);
         x = _posX;
