@@ -10,6 +10,7 @@ import codigo.formas.Cuadrado;
 import codigo.formas.Estrella;
 import codigo.formas.Forma;
 import codigo.formas.Pentagono;
+import codigo.formas.Recta;
 import codigo.formas.Triangulo;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -27,6 +28,8 @@ public class VentanaPaint extends javax.swing.JFrame {
     Graphics2D bufferGraphics, bufferGraphics2, jpanelGraphics = null;
 
     Circulo miCirculo = null;
+
+    Recta miRecta = null;
 
     Forma miForma = new Forma(-1, -1, 1, Color.white, false);
 
@@ -157,6 +160,9 @@ public class VentanaPaint extends javax.swing.JFrame {
             case 3:
                 miForma.dibujate(bufferGraphics, evt.getX(), evt.getY());
                 break;
+            case 20:
+                miRecta.Trazate(bufferGraphics, evt.getX(), evt.getY());
+                break;
 
         }
         repaint(0, 0, 1, 1);
@@ -170,6 +176,10 @@ public class VentanaPaint extends javax.swing.JFrame {
                 miCirculo = new Circulo(evt.getX(), evt.getY(), 1, panelColores1.colorSeleccionado, herramientas2.relleno);
                 miCirculo.dibujate(bufferGraphics, evt.getX());
                 break;
+            case 3:
+                miForma = new Triangulo(evt.getX(), evt.getY(), 3, panelColores1.colorSeleccionado, herramientas2.relleno);
+                miForma.dibujate(bufferGraphics, evt.getX(), evt.getY());
+                break;
             case 4:
                 miForma = new Cuadrado(evt.getX(), evt.getY(), 4, panelColores1.colorSeleccionado, herramientas2.relleno);
                 miForma.dibujate(bufferGraphics, evt.getX(), evt.getY());
@@ -182,21 +192,24 @@ public class VentanaPaint extends javax.swing.JFrame {
                 miForma = new Estrella(evt.getX(), evt.getY(), 3, panelColores1.colorSeleccionado, herramientas2.relleno);
                 miForma.dibujate(bufferGraphics, evt.getX(), evt.getY());
                 break;
-            case 3:
-                miForma = new Triangulo(evt.getX(), evt.getY(), 3, panelColores1.colorSeleccionado, herramientas2.relleno);
-                miForma.dibujate(bufferGraphics, evt.getX(), evt.getY());
-                break;
+
+            case 20:
+                miRecta = new Recta(evt.getX(), evt.getY(), evt.getX(), evt.getY(), panelColores1.colorSeleccionado);
+                miRecta.Trazate(bufferGraphics, evt.getX(), evt.getY());
         }
     }//GEN-LAST:event_jPanel1MousePressed
 
     private void jPanel1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseReleased
-
+        if (herramientas2.formaElegida == 20) {
+            miRecta.Trazate(bufferGraphics2, evt.getX(), evt.getY());
+        }
+        if (herramientas2.formaElegida == 1) {
+            miCirculo.dibujate(bufferGraphics2, evt.getX());
+        }
+        if (herramientas2.formaElegida != 1 && herramientas2.formaElegida != 20) {
             miForma.dibujate(bufferGraphics2, evt.getX(), evt.getY());
-            if(herramientas2.formaElegida == 1){
-                miCirculo.dibujate(bufferGraphics2, evt.getX());
-            }
-        
-        
+        }
+
     }//GEN-LAST:event_jPanel1MouseReleased
 
     /**
