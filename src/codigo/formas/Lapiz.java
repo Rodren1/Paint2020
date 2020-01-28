@@ -5,11 +5,10 @@
  */
 package codigo.formas;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
-import java.awt.Stroke;
+
 
 /**
  *
@@ -30,7 +29,6 @@ public class Lapiz extends Polygon {
 
     public void dibujate(Graphics2D g2, int posX, int posY) {
         g2.setColor(color);
-        
         g2.drawLine(posX, posY, x, y);
         x = posX;
         y = posY;
