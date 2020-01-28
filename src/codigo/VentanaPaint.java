@@ -18,6 +18,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -46,6 +51,7 @@ public class VentanaPaint extends javax.swing.JFrame {
         initComponents();
         inicializaBuffers();
         jDialog1.setSize(700, 450);
+        jDialog2.setSize(700, 500);
     }
 
     private void inicializaBuffers() {
@@ -87,10 +93,17 @@ public class VentanaPaint extends javax.swing.JFrame {
         jColorChooser1 = new javax.swing.JColorChooser();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jDialog2 = new javax.swing.JDialog();
+        jFileChooser1 = new javax.swing.JFileChooser();
         jPanel1 = new javax.swing.JPanel();
         panelColores1 = new codigo.PanelColores();
         herramientas2 = new codigo.Herramientas();
         jButton1 = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
 
         jButton2.setText("Aceptar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -134,6 +147,23 @@ public class VentanaPaint extends javax.swing.JFrame {
                 .addContainerGap(57, Short.MAX_VALUE))
         );
 
+        javax.swing.GroupLayout jDialog2Layout = new javax.swing.GroupLayout(jDialog2.getContentPane());
+        jDialog2.getContentPane().setLayout(jDialog2Layout);
+        jDialog2Layout.setHorizontalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jFileChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 764, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jDialog2Layout.setVerticalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(148, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -168,6 +198,31 @@ public class VentanaPaint extends javax.swing.JFrame {
             }
         });
 
+        jMenu1.setText("File");
+
+        jMenuItem1.setText("Guardar");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("Abrir");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -177,25 +232,24 @@ public class VentanaPaint extends javax.swing.JFrame {
                 .addComponent(herramientas2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelColores1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(panelColores1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(62, 62, 62)
+                        .addComponent(jButton1))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(38, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(317, 317, 317))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(herramientas2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addComponent(panelColores1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelColores1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(24, 24, 24))
         );
 
@@ -307,6 +361,44 @@ public class VentanaPaint extends javax.swing.JFrame {
         panelColores1.colorSeleccionado = jColorChooser1.getColor();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        int seleccion = jFileChooser1.showSaveDialog(this);
+        if (seleccion == JFileChooser.APPROVE_OPTION) {
+            //si entra aqui es pq el usuario ha pulsado en "guardar"
+            File fichero = jFileChooser1.getSelectedFile();
+            String nombre = fichero.getName();
+            String extension = nombre.substring(nombre.lastIndexOf('.') + 1, nombre.length());
+            if (extension.equalsIgnoreCase("jpg") || extension.equalsIgnoreCase("png")) {
+                try {
+                    ImageIO.write(buffer, "png", fichero);
+                } catch (IOException e) {
+                }
+            } else {
+                //mensaje de extension no válida
+            }
+        }
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        jFileChooser1.setFileFilter(new FileNameExtensionFilter("arhivos de imagen jpg", "jpg"));
+        jFileChooser1.setFileFilter(new FileNameExtensionFilter("arhivos de imagen png", "png"));
+        int seleccion = jFileChooser1.showOpenDialog(this);
+
+        if (seleccion == JFileChooser.APPROVE_OPTION) {
+            File fichero = jFileChooser1.getSelectedFile();
+            String nombre = fichero.getName();
+            String extension = nombre.substring(nombre.lastIndexOf('.') + 1, nombre.length());
+
+            if (extension.equalsIgnoreCase("jpg") || extension.equalsIgnoreCase("png")) {
+                try {
+                    buffer = ImageIO.read(fichero);
+                    repaint(0, 0, 1, 1);
+                } catch (IOException ex) {
+                }
+            }
+        }
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -349,6 +441,13 @@ public class VentanaPaint extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JColorChooser jColorChooser1;
     private javax.swing.JDialog jDialog1;
+    private javax.swing.JDialog jDialog2;
+    private javax.swing.JFileChooser jFileChooser1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private codigo.PanelColores panelColores1;
     // End of variables declaration//GEN-END:variables

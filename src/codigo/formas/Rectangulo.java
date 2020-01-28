@@ -34,12 +34,12 @@ public class Rectangulo extends Polygon {
         g2.drawLine(posX, posY, posX, y);
         g2.drawLine(posX, posY, x, posY);
         if (relleno) {
-               g2.fillRect(posX, posY, x - posX, y - posY);
-//            for (int x1 = x < posX ? x : posX; x1 < (x < posX ? posX : x); x1++) {
-//                for (int y1 = y < posY ? y : posY; y1 < (y < posY ? posY : y); y1++) {
-//                    g2.drawLine(x1, y1, x1, y1);
-//                }
-//            }
+               
+            for (int x1 = x < posX ? x : posX; x1 < (x < posX ? posX : x); x1++) {
+                for (int y1 = y < posY ? y : posY; y1 < (y < posY ? posY : y); y1++) {
+                    g2.drawLine(x1, y1, x1, y1);
+                }
+            }
         } else {
             g2.draw(this);
         }
