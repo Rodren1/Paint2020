@@ -200,15 +200,28 @@ public class VentanaPaint extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel1MousePressed
 
     private void jPanel1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseReleased
-        if (herramientas2.formaElegida == 20) {
-            miRecta.Trazate(bufferGraphics2, evt.getX(), evt.getY());
+        switch (herramientas2.formaElegida) {
+
+            case 20:
+                miRecta.Trazate(bufferGraphics2, evt.getX(), evt.getY());
+                break;
+            case 1:
+                miCirculo.dibujate(bufferGraphics2, evt.getX());
+                break;
+            case 3:
+                miForma.dibujate(bufferGraphics2, evt.getX(), evt.getY());
+                break;
+            case 4:
+                miForma.dibujate(bufferGraphics2, evt.getX(), evt.getY());
+                break;
+            case 5:
+                miForma.dibujate(bufferGraphics2, evt.getX(), evt.getY());
+                break;
+            case 256:
+                miForma.dibujate(bufferGraphics2, evt.getX(), evt.getY());
+                break;
         }
-        if (herramientas2.formaElegida == 1) {
-            miCirculo.dibujate(bufferGraphics2, evt.getX());
-        }
-        if (herramientas2.formaElegida != 1 && herramientas2.formaElegida != 20) {
-            miForma.dibujate(bufferGraphics2, evt.getX(), evt.getY());
-        }
+
 
     }//GEN-LAST:event_jPanel1MouseReleased
 
