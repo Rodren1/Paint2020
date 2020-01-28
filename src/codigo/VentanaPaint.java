@@ -9,6 +9,7 @@ import codigo.formas.Circulo;
 import codigo.formas.Cuadrado;
 import codigo.formas.Estrella;
 import codigo.formas.Forma;
+import codigo.formas.Lapiz;
 import codigo.formas.Pentagono;
 import codigo.formas.Recta;
 import codigo.formas.Triangulo;
@@ -30,6 +31,8 @@ public class VentanaPaint extends javax.swing.JFrame {
     Circulo miCirculo = null;
 
     Recta miRecta = null;
+    
+    Lapiz miLapiz = null;
 
     Forma miForma = new Forma(-1, -1, 1, Color.white, false);
 
@@ -142,8 +145,7 @@ public class VentanaPaint extends javax.swing.JFrame {
         bufferGraphics.drawImage(buffer2, 0, 0, null);
         switch (herramientas2.formaElegida) {
             case 0:
-                bufferGraphics2.setColor(panelColores1.colorSeleccionado);
-                bufferGraphics2.fillOval(evt.getX(), evt.getY(), 4, 4);
+                miLapiz.dibujate(bufferGraphics2, evt.getX(), evt.getY());
                 break;
             case 1:
                 miCirculo.dibujate(bufferGraphics, evt.getX());
@@ -171,6 +173,8 @@ public class VentanaPaint extends javax.swing.JFrame {
     private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
         switch (herramientas2.formaElegida) {
             case 0:
+                miLapiz = new Lapiz(evt.getX(), evt.getY(), panelColores1.colorSeleccionado);
+                miLapiz.dibujate(bufferGraphics, evt.getX(), evt.getY());
                 break;
             case 1:
                 miCirculo = new Circulo(evt.getX(), evt.getY(), 1, panelColores1.colorSeleccionado, herramientas2.relleno);
@@ -201,7 +205,9 @@ public class VentanaPaint extends javax.swing.JFrame {
 
     private void jPanel1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseReleased
         switch (herramientas2.formaElegida) {
-
+            case 0:
+                miLapiz.dibujate(bufferGraphics2, evt.getX(), evt.getY());
+                break;
             case 20:
                 miRecta.Trazate(bufferGraphics2, evt.getX(), evt.getY());
                 break;
