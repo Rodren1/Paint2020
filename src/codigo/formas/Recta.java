@@ -5,6 +5,7 @@
  */
 package codigo.formas;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Line2D;
@@ -26,11 +27,12 @@ public class Recta extends Line2D.Double {
         color = _color;
     }
 
-    public void Trazate(Graphics2D g2, int _posX2, int _posY2) {
+    public void Trazate(Graphics2D g2, int _posX2, int _posY2, String grosor) {
         x2 = _posX2;
         y2 = _posY2;
         g2.setColor(color);
-        g2.drawLine((int)x1, (int)y1, (int)x2, (int)y2);
+        g2.setStroke(new BasicStroke(java.lang.Float.parseFloat(grosor)));
+        g2.drawLine((int) x1, (int) y1, (int) x2, (int) y2);
     }
 
 }

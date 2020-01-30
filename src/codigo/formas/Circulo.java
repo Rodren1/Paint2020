@@ -5,6 +5,7 @@
  */
 package codigo.formas;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
@@ -28,11 +29,12 @@ public class Circulo extends Ellipse2D.Double{
         relleno = _relleno;
     }
     
-    public void dibujate(Graphics2D g2, int _posX){
+    public void dibujate(Graphics2D g2, int _posX, String grosor){
         int diametro = Math.abs( (int) x - _posX);
         width = diametro;
         height = diametro;
         g2.setColor(color);
+        g2.setStroke(new BasicStroke(java.lang.Float.parseFloat(grosor)));
         if (relleno){
             g2.fill(this);
         }

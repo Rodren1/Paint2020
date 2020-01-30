@@ -10,29 +10,25 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
 
-
-
 /**
  *
  * @author xp
  */
-public class Lapiz extends Polygon {
+public class Goma extends Polygon {
 
-    public Color color = null;
+    public Color color = Color.WHITE;
     public int x = 0;
     public int y = 0;
-   
 
-    public Lapiz(int posX, int posY, Color _color) {
+    public Goma(int posX, int posY, Color _color) {
         x = posX;
         y = posY;
-        color = _color;
     }
 
-    public void dibujate(Graphics2D g2, int posX, int posY, String grosor) {
+    public void dibujate(Graphics2D g2, int posX, int posY, String grosorGoma) {
         g2.setColor(color);
+        g2.setStroke(new BasicStroke(Float.parseFloat(grosorGoma)));
         g2.drawLine(posX, posY, x, y);
-        g2.setStroke(new BasicStroke(Float.parseFloat(grosor)));
         x = posX;
         y = posY;
     }
