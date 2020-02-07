@@ -4,7 +4,10 @@
  * and open the template in the editor.
  */
 package codigo.formas;
-
+/**
+ *
+ * @author Javi, Alba, Edu
+ */
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;

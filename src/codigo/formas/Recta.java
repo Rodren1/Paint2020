@@ -12,7 +12,7 @@ import java.awt.geom.Line2D;
 
 /**
  *
- * @author xp
+ * @author Javi, Alba, Edu
  */
 public class Recta extends Line2D.Double {
 
@@ -27,6 +27,8 @@ public class Recta extends Line2D.Double {
         color = _color;
     }
 
+    //Dibuja una recta entre los dos puntos que se reciben, la x e y donde se clicka con el raton
+    //y la x e y donde se suelta el click
     public void Trazate(Graphics2D g2, int _posX2, int _posY2, String grosor) {
         x2 = _posX2;
         y2 = _posY2;

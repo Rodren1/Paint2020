@@ -12,7 +12,7 @@ import java.awt.Polygon;
 
 /**
  *
- * @author xp
+ * @author Javi, Alba, Edu
  */
 public class Goma extends Polygon {
 

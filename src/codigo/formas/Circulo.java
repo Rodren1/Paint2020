@@ -12,7 +12,7 @@ import java.awt.geom.Ellipse2D;
 
 /**
  *
- * @author xp
+ * @author Javi, Alba, Edu
  */
 public class Circulo extends Ellipse2D.Double{
     public Color color = Color.BLACK;

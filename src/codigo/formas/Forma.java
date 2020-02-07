@@ -8,7 +8,7 @@ import java.awt.Polygon;
 
 /**
  *
- * @author 
+ * @author Javi, Alba, Edu
  */
 public class Forma  extends Polygon{
     public Color color;

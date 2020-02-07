@@ -29,7 +29,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
- * @author xp
+ * @author Javi, Alba, Edu
  */
 public class VentanaPaint extends javax.swing.JFrame {
 
@@ -427,33 +427,34 @@ public class VentanaPaint extends javax.swing.JFrame {
     private void jPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseDragged
         bufferGraphics.drawImage(buffer2, 0, 0, null);
         switch (herramientas1.formaElegida) {
-            case -1:
+            case -1://Goma
                 miGoma.dibujate(bufferGraphics2, evt.getX(), evt.getY(), grosorGoma);
                 break;
-            case 0:
+            case 0://Lapiz
                 miLapiz.dibujate(bufferGraphics2, evt.getX(), evt.getY(), grosor);
                 break;
-            case 1:
+            case 1://Circulo
                 miCirculo.dibujate(bufferGraphics, evt.getX(), grosor);
                 break;
-            case 2:
+            case 2://Recta
                 miRecta.Trazate(bufferGraphics, evt.getX(), evt.getY(), grosor);
                 break;
-            case 3:
+            case 3://Triangulo
                 miForma.dibujate(bufferGraphics, evt.getX(), evt.getY(), grosor);
                 break;
-            case 4:
+            case 4://Cuadrado
                 miForma.dibujate(bufferGraphics, evt.getX(), evt.getY(), grosor);
                 break;
-            case 5:
+            case 5://Pentagono
                 miForma.dibujate(bufferGraphics, evt.getX(), evt.getY(), grosor);
                 break;
-            case 9:
+            case 9://Spray
+                //Usamos la formula de la circunferencia y con el random se llena con puntos de forma aleatoria
                 bufferGraphics2.setColor(panelColores1.colorSeleccionado);
                 bufferGraphics2.fillOval(evt.getX() - aleatorio.nextInt((int) Math.PI * (spray * spray)) / 2,
                         evt.getY() - aleatorio.nextInt((int) Math.PI * (spray * spray)) / 2, spray, spray);
                 break;
-            case 256:
+            case 256://Estrella
                 miForma.dibujate(bufferGraphics, evt.getX(), evt.getY(), grosor);
                 break;
 
@@ -463,46 +464,46 @@ public class VentanaPaint extends javax.swing.JFrame {
 
     private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
         switch (herramientas1.formaElegida) {
-            case -1:
+            case -1: //Goma
                 miGoma = new Goma(evt.getX(), evt.getY(), Color.white);
                 miGoma.dibujate(bufferGraphics, evt.getX(), evt.getY(), grosorGoma);
                 break;
-            case 0:
+            case 0: //Lapiz
                 miLapiz = new Lapiz(evt.getX(), evt.getY(), panelColores1.colorSeleccionado);
                 miLapiz.dibujate(bufferGraphics, evt.getX(), evt.getY(), grosor);
                 break;
-            case 1:
+            case 1://Circulo
                 miCirculo = new Circulo(evt.getX(), evt.getY(), 1, panelColores1.colorSeleccionado, herramientas1.relleno);
                 miCirculo.dibujate(bufferGraphics, evt.getX(), grosor);
                 break;
-            case 2:
+            case 2://Recta
                 miRecta = new Recta(evt.getX(), evt.getY(), evt.getX(), evt.getY(), panelColores1.colorSeleccionado);
                 miRecta.Trazate(bufferGraphics, evt.getX(), evt.getY(), grosor);
                 break;
-            case 3:
+            case 3://Triangulo
                 miForma = new Triangulo(evt.getX(), evt.getY(), 3, panelColores1.colorSeleccionado, herramientas1.relleno);
                 miForma.dibujate(bufferGraphics, evt.getX(), evt.getY(), grosor);
                 break;
-            case 4:
+            case 4://Cuadrado
                 miForma = new Cuadrado(evt.getX(), evt.getY(), 4,panelColores1.colorSeleccionado, herramientas1.relleno);
                 miForma.dibujate(bufferGraphics, evt.getX(), evt.getY(), grosor);
                 break;
-            case 5:
+            case 5://Pentagono
                 miForma = new Pentagono(evt.getX(), evt.getY(), 5, panelColores1.colorSeleccionado, herramientas1.relleno);
                 miForma.dibujate(bufferGraphics, evt.getX(), evt.getY(), grosor);
                 break;
-            case 10:
+            case 10://Pipeta
                 Color c = new Color(buffer2.getRGB(evt.getX(), evt.getY()));
                 panelColores1.colorSeleccionado = c;
                 break;
-            case 200:
+            case 200://Texto
                 miTexto = new Texto(evt.getX(), evt.getY(), panelColores1.colorSeleccionado);
                 miTexto.escribete(bufferGraphics2, texto, tamanoFuente, fuente);
                 bufferGraphics.drawImage(buffer2, 0, 0, null);
                 repaint(0, 0, 1, 1);
                 texto = "";//Dejamos el texto en blanco
                 break;
-            case 256:
+            case 256://Estrella
                 miForma = new Estrella(evt.getX(), evt.getY(), 3, panelColores1.colorSeleccionado, herramientas1.relleno);
                 miForma.dibujate(bufferGraphics, evt.getX(), evt.getY(), grosor);
                 break;
@@ -537,6 +538,7 @@ public class VentanaPaint extends javax.swing.JFrame {
                 miForma.dibujate(bufferGraphics2, evt.getX(), evt.getY(), grosor);
                 break;
         }
+        //Este buffer copia lo dibujado en el buffer2 y se guarda en el arraylist para que funcione el deshacer
         buffer3 = (BufferedImage) jPanel1.createImage(jPanel1.getWidth(), jPanel1.getHeight());
         bufferGraphics3 = buffer3.createGraphics();
         bufferGraphics3.drawImage(buffer2, null, this);
@@ -597,6 +599,7 @@ public class VentanaPaint extends javax.swing.JFrame {
         jDialog1.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    //Con este slider cambia el grosor de las herramientas
     private void jSlider1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
         grosor = Integer.toString(jSlider1.getValue() / 10) + "f";
         grosorGoma = Integer.toString(jSlider1.getValue() / 5) + "f";

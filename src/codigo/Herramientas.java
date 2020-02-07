@@ -9,7 +9,7 @@ import codigo.formas.Forma;
 
 /**
  *
- * @author xp
+ * @author Javi, Alba, Edu
  */
 public class Herramientas extends javax.swing.JPanel {
 

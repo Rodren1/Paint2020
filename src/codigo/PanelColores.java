@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 
 /**
  *
- * @author xp
+ * @author Javi, Alba, Edu
  */
 public class PanelColores extends javax.swing.JPanel {
 
